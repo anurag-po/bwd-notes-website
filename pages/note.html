@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note - Knowledge Vault</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            background: var(--bg-inset);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-right: 4px;
+        }
+
+        .status-indicator {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            transition: color 0.3s;
+        }
+
+        .status-indicator.saving {
+            color: var(--accent-primary);
+        }
+
+        .status-indicator.saved {
+            color: var(--text-tertiary);
+        }
+
+        .status-indicator.error {
+            color: var(--danger);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Minimal Sidebar for Editor Focus -->
+        <nav class="sidebar" style="width: 60px; padding: var(--space-md) var(--space-sm); align-items: center;">
+            <button onclick="history.back()" class="btn-icon" title="Back" style="margin-bottom: var(--space-xl);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div style="flex: 1;"></div> <!-- Spacer -->
+                <span id="save-status" class="status-indicator"></span>
+            </header>
+
+            <div class="editor-container">
+                <input type="text" id="note-title" class="editor-title" placeholder="Untitled Note" autocomplete="off">
+
+                <div style="display: flex; gap: var(--space-sm); align-items: center; flex-wrap: wrap;">
+                    <div id="tags-container" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                    <input type="text" id="tag-input" placeholder="+ Add tag"
+                        style="border: none; background: transparent; font-size: 0.9rem; width: 100px; outline: none; color: var(--text-secondary);">
+                </div>
+
+                <div style="margin-top: var(--space-sm);">
+                    <input type="text" id="note-ref" placeholder="Add reference URL..."
+                        style="border: none; background: transparent; color: var(--accent-primary); width: 100%; outline: none; font-size: 0.9rem;">
+                </div>
+
+                <textarea id="note-content" class="editor-content" placeholder="Start typing..."></textarea>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden datalist for tag suggestions could be added here if complex -->
+
+    <script type="module" src="../js/note.js"></script>
+</body>
+
+</html>

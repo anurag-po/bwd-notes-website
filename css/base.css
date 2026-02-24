@@ -1,0 +1,93 @@
+/* Base Reset & Variables */
+:root {
+    /* HSL Color Palette - Focused, Neutral, Premium */
+    --hue: 220;
+    --sat: 15%;
+
+    --bg-app: hsl(var(--hue), var(--sat), 98%);
+    --bg-panel: hsl(var(--hue), var(--sat), 100%);
+    --bg-inset: hsl(var(--hue), var(--sat), 96%);
+
+    --text-primary: hsl(var(--hue), var(--sat), 10%);
+    --text-secondary: hsl(var(--hue), var(--sat), 40%);
+    --text-tertiary: hsl(var(--hue), var(--sat), 60%);
+
+    --border-subtle: hsl(var(--hue), var(--sat), 90%);
+    --border-focus: hsl(var(--hue), var(--sat), 80%);
+
+    --accent-primary: hsl(220, 90%, 54%);
+    /* Reliable Blue */
+    --accent-secondary: hsl(260, 60%, 60%);
+    /* Subtle Purple */
+    --danger: hsl(0, 70%, 50%);
+
+    /* Spacing System */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2.5rem;
+
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-app: hsl(var(--hue), var(--sat), 10%);
+    --bg-panel: hsl(var(--hue), var(--sat), 14%);
+    --bg-inset: hsl(var(--hue), var(--sat), 8%);
+
+    --text-primary: hsl(var(--hue), var(--sat), 95%);
+    --text-secondary: hsl(var(--hue), var(--sat), 70%);
+    --text-tertiary: hsl(var(--hue), var(--sat), 50%);
+
+    --border-subtle: hsl(var(--hue), var(--sat), 20%);
+    --border-focus: hsl(var(--hue), var(--sat), 30%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    overflow: hidden;
+    /* App-like feel */
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+input,
+textarea {
+    font-family: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

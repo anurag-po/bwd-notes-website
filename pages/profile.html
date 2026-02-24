@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Knowledge Vault</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2 style="font-weight: 700; cursor: pointer;" onclick="window.location.href='dashboard.html'">Vault</h2>
+
+            <div style="flex: 1;">
+                <div class="list-item" onclick="location.href='dashboard.html'">
+                    <span>Dashboard</span>
+                </div>
+                <div class="list-item" onclick="location.href='search.html'">
+                    <span>Search</span>
+                </div>
+                <div class="list-item active" style="pointer-events: none;">
+                    <span>Profile</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container" style="max-width: 600px;">
+                <header class="header" style="margin-bottom: var(--space-xl); border: none; padding-left: 0;">
+                    <h1>Account</h1>
+                </header>
+
+                <div class="card" style="margin-bottom: var(--space-lg);">
+                    <div style="margin-bottom: var(--space-md);">
+                        <label
+                            style="display: block; color: var(--text-secondary); margin-bottom: 4px; font-size: 0.9rem;">Email</label>
+                        <div id="user-email" style="font-size: 1.2rem; font-weight: 500;">Loading...</div>
+                    </div>
+                    <button id="logout-btn" class="btn btn-danger">Sign Out</button>
+                </div>
+
+                <h3 style="margin-bottom: var(--space-md);">Statistics</h3>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-bottom: var(--space-xl);">
+                    <div class="card" style="text-align: center;">
+                        <div id="stat-collections"
+                            style="font-size: 2.5rem; font-weight: 700; color: var(--accent-primary);">0</div>
+                        <div style="color: var(--text-secondary);">Collections</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <div id="stat-notes"
+                            style="font-size: 2.5rem; font-weight: 700; color: var(--accent-secondary);">0</div>
+                        <div style="color: var(--text-secondary);">Notes</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: var(--space-md);">Preferences</h3>
+                <div class="card">
+                    <div class="list-item" style="cursor: default;">
+                        <span>Dark Mode</span>
+                        <input type="checkbox" id="theme-toggle" style="transform: scale(1.5);">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/profile.js"></script>
+</body>
+
+</html>

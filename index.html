@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Vault</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .hero-section {
+            text-align: center;
+            max-width: 600px;
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            /* Optional: Make it look like a card on desktop */
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-lg);
+            }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-layout">
+        <div class="hero-section">
+            <div>
+                <h1 class="hero-title">Knowledge Vault</h1>
+                <p class="hero-subtitle">
+                    Secure, structured, and fast. Your personal knowledge base, redefined for focus and clarity.
+                </p>
+            </div>
+
+            <button id="login-btn" class="btn btn-primary" style="font-size: 1.1rem; padding: 12px 24px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 1.95 0 3.73.53 5.16 1.86l2.13-2.13C17.65 2.72 14.88 2 12.2 2 6.55 2 2 6.45 2 12c0 5.45 4.55 10 10 10 5.39 0 9.39-3.79 9.39-9.3 0-.67-.09-1.29-.24-1.6z" />
+                </svg>
+                Sign in with Google
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from './js/auth.js';
+
+        // Check if already logged in
+        async function checkSession() {
+            const session = await auth.getSession();
+            if (session) {
+                window.location.href = 'pages/dashboard.html';
+            }
+        }
+        
+        checkSession();
+
+        const loginBtn = document.getElementById('login-btn');
+        loginBtn.addEventListener('click', async () => {
+            loginBtn.textContent = 'Signing in...';
+            loginBtn.disabled = true;
+            await auth.signInWithGoogle();
+        });
+    </script>
+</body>
+
+</html>

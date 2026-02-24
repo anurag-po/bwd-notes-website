@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Knowledge Vault</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2 style="font-weight: 700; cursor: pointer;" onclick="window.location.href='dashboard.html'">Vault</h2>
+
+            <div style="flex: 1;">
+                <div class="list-item" onclick="location.href='dashboard.html'">
+                    <span>Dashboard</span>
+                </div>
+                <div class="list-item active" style="pointer-events: none;">
+                    <span>Search</span>
+                </div>
+                <div class="list-item" onclick="location.href='profile.html'">
+                    <span>Profile</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="container" style="max-width: 700px; padding-top: var(--space-xl);">
+                <header style="margin-bottom: var(--space-lg);">
+                    <input type="text" id="search-input" class="input" placeholder="Search notes..."
+                        style="font-size: 1.2rem; padding: 16px; border-width: 2px;">
+                </header>
+
+                <div id="loading-indicator" style="display: none; text-align: center; color: var(--text-tertiary);">
+                    Indexing notes...</div>
+
+                <div id="results-list" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                    <!-- Results -->
+                </div>
+
+                <div id="no-results"
+                    style="display: none; text-align: center; color: var(--text-secondary); margin-top: var(--space-xl);">
+                    No matches found.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/search.js"></script>
+</body>
+
+</html>

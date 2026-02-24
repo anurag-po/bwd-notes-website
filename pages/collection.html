@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection - Knowledge Vault</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar (Reused manually for now, could be dynamic component) -->
+        <nav class="sidebar">
+            <h2 style="font-weight: 700; cursor: pointer;" onclick="window.location.href='dashboard.html'">Vault</h2>
+
+            <div style="flex: 1;">
+                <div class="list-item" onclick="location.href='dashboard.html'">
+                    <span>Dashboard</span>
+                </div>
+                <div class="list-item active" style="pointer-events: none;">
+                    <span>Collection</span>
+                </div>
+                <div class="list-item" onclick="location.href='profile.html'">
+                    <span>Profile</span>
+                </div>
+            </div>
+
+            <div class="user-profile" style="padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+                <button onclick="window.location.href='dashboard.html'" class="btn btn-ghost"
+                    style="width: 100%; justify-content: flex-start; padding-left: 0;">← Back to Dashboard</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h3 id="collection-title">Loading...</h3>
+                <div style="display: flex; gap: var(--space-sm);">
+                    <select id="sort-select" class="input" style="width: auto;">
+                        <option value="updated_at.desc">Last Edited</option>
+                        <option value="created_at.desc">Created Date</option>
+                        <option value="title.asc">Title (A-Z)</option>
+                    </select>
+                    <button id="new-note-btn" class="btn btn-primary">+ New Note</button>
+                </div>
+            </header>
+
+            <div class="container">
+                <!-- Tag Filter Bar (Client-side) -->
+                <div id="tag-filters"
+                    style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-lg); flex-wrap: wrap;">
+                    <!-- Fetched tags injected here -->
+                </div>
+
+                <div id="notes-list" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                    <!-- Notes injected here -->
+                    <div class="card skeleton" style="height: 60px;"></div>
+                    <div class="card skeleton" style="height: 60px;"></div>
+                </div>
+
+                <div id="empty-state"
+                    style="display: none; text-align: center; padding: var(--space-xl); color: var(--text-secondary);">
+                    <p>No notes in this collection.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/collection.js"></script>
+</body>
+
+</html>
