@@ -73,6 +73,12 @@
                         style="border: none; background: transparent; color: var(--accent-primary); width: 100%; outline: none; font-size: 0.9rem;">
                 </div>
 
+                <!-- PDF Viewer Container -->
+                <div id="pdf-viewer-container"
+                    style="display: none; margin-top: var(--space-md); height: 60vh; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); overflow: hidden;">
+                    <iframe id="pdf-frame" style="width: 100%; height: 100%; border: none;"></iframe>
+                </div>
+
                 <textarea id="note-content" class="editor-content" placeholder="Start typing..."></textarea>
             </div>
         </main>
