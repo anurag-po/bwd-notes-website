@@ -14,6 +14,21 @@ const titleEl = document.getElementById('note-title');
 const contentEl = document.getElementById('note-content');
 const refEl = document.getElementById('note-ref');
 
+// PDF Viewer Elements
+const pdfViewerContainer = document.getElementById('pdf-viewer-container');
+const pdfFrame = document.getElementById('pdf-frame');
+
+function updatePDFViewer(url) {
+    if (url && url.toLowerCase().includes('.pdf')) {
+        // Use #toolbar=0&view=FitH for better default PDF embedding experience
+        pdfFrame.src = url.includes('#') ? url : url + '#toolbar=0&view=FitH';
+        pdfViewerContainer.style.display = 'block';
+    } else {
+        pdfFrame.src = '';
+        pdfViewerContainer.style.display = 'none';
+    }
+}
+
 async function init() {
     const session = await auth.requireAuth();
     user = session.user;
@@ -32,12 +47,19 @@ async function init() {
     // Auto-save setup
     const debouncedSave = utils.debounce(saveNote, 1000);
 
-    [titleEl, contentEl, refEl].forEach(el => {
+    [titleEl, contentEl].forEach(el => {
         el.addEventListener('input', () => {
             statusEl.textContent = 'Saving...';
             statusEl.className = 'status-indicator saving';
             debouncedSave();
         });
+    });
+
+    refEl.addEventListener('input', () => {
+        statusEl.textContent = 'Saving...';
+        statusEl.className = 'status-indicator saving';
+        updatePDFViewer(refEl.value);
+        debouncedSave();
     });
 
     // Tag Input
@@ -59,6 +81,8 @@ async function loadNote() {
     titleEl.value = data.title || '';
     contentEl.value = data.content || '';
     refEl.value = data.reference_url || '';
+
+    updatePDFViewer(refEl.value);
 
     statusEl.textContent = 'Saved';
     statusEl.className = 'status-indicator saved';
