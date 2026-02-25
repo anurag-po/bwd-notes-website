@@ -5,9 +5,7 @@ export const auth = {
         if (!supabase) return;
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
-            options: {
-                redirectTo: window.location.origin + '/pages/dashboard.html'
-            }
+            options: { redirectTo: 'https://anurag-po.github.io/bwd-notes-website/pages/dashboard.html' }
         });
         if (error) console.error('Login error:', error);
         return { data, error };
