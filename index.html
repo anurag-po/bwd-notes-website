@@ -21,7 +21,7 @@
             background: var(--bg-panel);
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
-            /* Optional: Make it look like a card on desktop */
+         
         }
 
         @media (min-width: 768px) {
@@ -70,7 +70,7 @@
     <script type="module">
         import { auth } from './js/auth.js';
 
-        // Check if already logged in
+        // Check log in
         async function checkSession() {
             const session = await auth.getSession();
             if (session) {
