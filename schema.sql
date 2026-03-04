@@ -1,6 +1,6 @@
 
 
--- 1. Collections Table
+
 CREATE TABLE collections (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
@@ -23,7 +23,7 @@ CREATE POLICY "Users can update own collections" ON collections
 CREATE POLICY "Users can delete own collections" ON collections
   FOR DELETE USING (auth.uid() = user_id);
 
--- 2. Notes Table
+
 CREATE TABLE notes (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
@@ -49,7 +49,7 @@ CREATE POLICY "Users can update own notes" ON notes
 CREATE POLICY "Users can delete own notes" ON notes
   FOR DELETE USING (auth.uid() = user_id);
 
--- 3. Tags Table
+
 CREATE TABLE tags (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
@@ -71,7 +71,7 @@ CREATE POLICY "Users can update own tags" ON tags
 CREATE POLICY "Users can delete own tags" ON tags
   FOR DELETE USING (auth.uid() = user_id);
 
--- 4. Note_Tags Junction Table
+
 CREATE TABLE note_tags (
   note_id uuid REFERENCES notes(id) ON DELETE CASCADE NOT NULL,
   tag_id uuid REFERENCES tags(id) ON DELETE CASCADE NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE note_tags (
 
 ALTER TABLE note_tags ENABLE ROW LEVEL SECURITY;
 
--- For junction tables, we check if the related note belongs to the user
+
 CREATE POLICY "Users can view own note_tags" ON note_tags
   FOR SELECT USING (
     EXISTS (SELECT 1 FROM notes WHERE id = note_tags.note_id AND user_id = auth.uid())
